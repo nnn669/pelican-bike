@@ -559,6 +559,8 @@ function rollRegime(){
   toast('市场模式切换：' + rg.n);
 }
 function activeMode(){
+  // S 尚未初始化时（例如 newGame 生成种子 K 线）安全降级
+  if (!S || !S.regime) return 'range';
   return S.regime === 'random' ? (S.marketMode || 'range') : S.regime;
 }
 function modeDrift(){
